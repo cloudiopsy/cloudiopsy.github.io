@@ -10,23 +10,20 @@ body {
 
 	min-height: 100%;
 	background-color
-/*	background: rgb(63,212,251);
-	background: rgb(204,187,149);
-	background: linear-gradient(168deg, rgba(204,187,149,1) 0%, rgba(69,59,66,1) 100%);*/
 }
 
 .side-image img{
 	position: absolute;
-top: 60%;
-left: 115%;
-transform: translateY(-50%);
+	top: 80%;
+	left: 115%;
+	transform: translateY(-50%);
 }
 
 .info {
-position: absolute;
-top: 40%;
-left: 5%;
-transform: translateY(-50%);
+	position: absolute;
+	top: 40%;
+	left: 5%;
+	transform: translateY(-50%);
 }
 
 
