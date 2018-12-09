@@ -1,5 +1,5 @@
 * {
-	font-family: 'Open Sans';
+	font-family: 'Lato';
 }
 
 html {
@@ -22,25 +22,20 @@ body {
 	height: 100%;
 	width: 100%;
 	position: absolute;
-	top: 55%;
+	top: 58%;
 	left: 0%;
 	margin: 0 4em;
 	transform: translateY(-50%);
 	overflow-x: hidden;
 	display: block;
-	font-weight: bold;
 	color: #37698C;
 	height: 500px;
 }
 
-
-.header {
-	
-}
-
 .header-text{
+	font-family: 'Lato';
 	font-size: 7.5vw;
-
+	font-weight: 800;
 }
 
 .header-text img {
@@ -51,8 +46,10 @@ body {
 }
 
 .subheader {
-	margin-top: 1em;
-	font-size: 1.7vw;
+	font-weight: 200;
+	margin-top: 0.25em;
+	font-size: 2vw;
+
 }
 
 .submission {
@@ -80,6 +77,8 @@ body {
 	cursor: pointer;
 	margin: 0.25em 0;
 	margin-right: 0.55em;
+	width: 20vh;
+	height: 8vh;
 }
 
 .submission button:hover {
