@@ -35,7 +35,7 @@ body {
 .header-text{
 	font-family: 'Lato';
 	font-size: 7.5vw;
-	font-weight: 800;
+	font-weight: 700;
 }
 
 .header-text img {
@@ -46,7 +46,7 @@ body {
 }
 
 .subheader {
-	font-weight: 200;
+	font-weight: 300;
 	margin-top: 0.25em;
 	font-size: 2vw;
 
@@ -55,7 +55,8 @@ body {
 .submission {
 	position: absolute;
 	margin-left: 3em;
-	top: 55%;
+	top: 58%;
+	font-weight: 700;
 	background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
