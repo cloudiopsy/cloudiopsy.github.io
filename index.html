@@ -6,6 +6,42 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="style.css" type="text/css" rel="stylesheet"/>
 
+	<script>
+		// https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html
+	   function previewFile(){
+	       var preview = document.querySelector('img[class=preview]'); //selects the query named img
+	       var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+
+	       var reader  = new FileReader();
+
+	       reader.onloadend = function () {
+	           preview.src = reader.result;
+	       }
+
+	       if (file) {
+	           reader.readAsDataURL(file); //reads the data as a URL
+	       } else {
+	           preview.src = "";
+	       }
+   	   }
+
+   	   function analyze() {
+   	   		var file    = document.querySelector('input[type=file]').files[0]; 
+   	   		if (file) {
+   	   			runModel(file)
+   	   		} else {
+   	   			alert("Please input a file.")
+   	   		}
+   	   }
+
+   	   function runModel(file) {
+   	   		alert(file)
+   	   }
+
+
+
+</script>
+
 </head>
 <body>
 
@@ -24,12 +60,30 @@ A Colorectal Cancer Prediction Platform created through
 </div>
 
 
-<div class="submission">
-<button>
-	
-	<span class="glyphicon glyphicon glyphicon-open"> 
-	</span> UPLOAD 
+<label class="custom-file-upload">
+   <div class="submission upload">
+    <span class="glyphicon glyphicon-open"> 
+	</span> UPLOAD </label>
+	</div>
+	<input name="img" type="file" accept="image/*" onclick="window.location.hash = '';window.location.hash = 'analysis-section'" onchange="previewFile()"/>
+</label>
+
+
+<div id="analysis-section">
+<h1>Click Analyze to Run the Neural Network!</h1> 
+<img src="" class="preview" alt="Image preview"/>
+
+<p></p>
+
+<button class="submission analyze" onclick=
+"analyze()"> <span class="glyphicon glyphicon glyphicon-stats"> 
+	</span> ANALYZE </label>
 </button>
+</div>
+
+
+
+
 
 </body>
 </html>
