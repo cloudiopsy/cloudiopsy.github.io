@@ -6,12 +6,13 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="style.css" type="text/css" rel="stylesheet"/>
 
-	<script>
-		// https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html
-	   function previewFile(){
-	       var preview = document.querySelector('img[class=preview]'); //selects the query named img
-	       var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+	
 
+	<script>
+
+	   function previewFile(){
+	       var preview = document.querySelector('img[class=preview]'); 
+	       var file    = document.querySelector('input[type=file]').files[0];
 	       var reader  = new FileReader();
 
 	       reader.onloadend = function () {
@@ -19,7 +20,7 @@
 	       }
 
 	       if (file) {
-	           reader.readAsDataURL(file); //reads the data as a URL
+	           reader.readAsDataURL(file); 
 	       } else {
 	           preview.src = "";
 	       }
@@ -35,7 +36,9 @@
    	   }
 
    	   function runModel(file) {
-   	   		alert(file)
+   	   		alert("This is just a demo!")
+
+
    	   }
 
 
@@ -51,7 +54,7 @@
 </div>
 <div class="subheader">
 A Colorectal Cancer Prediction Platform created through
-<br/> Tensorflow and the Google Cloud Platform
+<br/> Tensorflow
 </div>
 
 <div class="side-image">
