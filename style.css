@@ -92,20 +92,22 @@ input[type="file"] {
 .preview {
 	margin-top: 1.5em;
 	margin-left: 4.2em;
-	max-width: 100vw;
-	max-height: 100vw;
+	width: 20vw;
+	height: 20vw;
 }
+
 
 #analysis-section p {
 	font-weight: 100;
 	margin-top: 0.25em;
-	margin-left: 3em;
-	font-size: 2vw;
+	margin-left: 1.5em;
+	font-size: 2.5vw;
+	margin-bottom: 2em;
 }
 
 .analyze {
 	left: 0.05%;
-	top: 75%;
+	top: 80%;
 }
 
 #analysis-section {

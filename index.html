@@ -10,7 +10,6 @@
 
 	<script>
 
-		const model = tf.loadModel('/model.json');
 		
 	   function previewFile(){
 	       var preview = document.querySelector('img[class=preview]'); 
@@ -37,15 +36,42 @@
    	   		}
    	   }
 
-   	   function runModel(file) {
-   	   		const model = tf.loadModel('https://cloudiopsy.github.io/model.json');
 
-   	   		const prediction = model.predict(file);
+   	   let model;
 
-   	   		alert(prediction);
+		async function loadModel() {
+
+		  // clear the model variable
+		  model = undefined;
+		  
+		  // load the model using a HTTPS request (where you have stored your model files)
+		  model = await tf.loadModel('https://cloudiopsy.github.io/model.json');
+		
+		}
+
+   	   async function runModel(file) {
+   	   		loadModel();
+   	   		const model = await tf.loadModel('https://cloudiopsy.github.io/model.json');
+
+   	   		// Convert image to tensor
+   	   		let img_tensor = tf.fromPixels(document.getElementById("preview")).resizeNearestNeighbor([150, 150]);
+   	   		img_tensor = tf.expandDims(img_tensor, axis=0);
+
+   	   		img_tensor = tf.div(img_tensor, 255);
+   	   		let predictions = await model.predict(img_tensor).data();
+
+   	   		if(predictions[0] < 0.05) {
+   	   			document.getElementById("prediction-text").innerHTML = "This tissue is deemed as normal!";
+   	   		} else {
+   	   			document.getElementById("prediction-text").innerHTML = "This tissue is deemed as normal!";
+   	   		}
+
+
+   	   		// alert(prediction);
 
 
    	   }
+
 
 
 
@@ -80,9 +106,9 @@ A Colorectal Cancer Prediction Platform created through
 
 <div id="analysis-section">
 <h1>Click Analyze to Run the Neural Network!</h1> 
-<img src="" class="preview" alt="Image preview"/>
+<img src="" class="preview" id="preview" alt="Image preview"/>
 
-<p></p>
+<p id="prediction-text"></p>
 
 <button class="submission analyze" onclick=
 "analyze()"> <span class="glyphicon glyphicon glyphicon-stats"> 
