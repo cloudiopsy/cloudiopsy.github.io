@@ -6,10 +6,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="style.css" type="text/css" rel="stylesheet"/>
 
-	
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.14.1/dist/tf.min.js"></script>
 
 	<script>
 
+		const model = tf.loadModel('/model.json');
+		
 	   function previewFile(){
 	       var preview = document.querySelector('img[class=preview]'); 
 	       var file    = document.querySelector('input[type=file]').files[0];
@@ -36,7 +38,11 @@
    	   }
 
    	   function runModel(file) {
-   	   		alert("This is just a demo!")
+   	   		const model = tf.loadModel('https://cloudiopsy.github.io/model.json');
+
+   	   		const prediction = model.predict(file);
+
+   	   		alert(prediction);
 
 
    	   }
