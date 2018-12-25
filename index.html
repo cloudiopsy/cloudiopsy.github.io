@@ -61,9 +61,9 @@
    	   		let predictions = await model.predict(img_tensor).data();
 
    	   		if(predictions[0] < 0.25) {
-   	   			document.getElementById("prediction-text").innerHTML = "This tissue is deemed as normal!";
+   	   			document.getElementById("prediction-text").innerHTML = predictions[0] + ": This tissue is deemed as normal!";
    	   		} else {
-   	   			document.getElementById("prediction-text").innerHTML = "This tissue is deemed as tumour!";
+   	   			document.getElementById("prediction-text").innerHTML = predictions[0] + ": This tissue is deemed as tumour!";
    	   		}
 
 
