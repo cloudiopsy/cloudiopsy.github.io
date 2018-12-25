@@ -9,7 +9,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.14.1/dist/tf.min.js"></script>
 
 	<script>
-
 		
 	   function previewFile(){
 	       var preview = document.querySelector('img[class=preview]'); 
@@ -37,9 +36,6 @@
    	   }
 
 
-   	   let model;
-
-
    	   async function runModel(file) {
 
    	   		const model = await tf.loadModel('https://cloudiopsy.github.io/model.json');
@@ -54,9 +50,11 @@
    	   		let predictions = await model.predict(img_tensor).data();
 
    	   		if(predictions[0] < 0.25) {
+                  document.getElementById("loader").style.display = "none";
    	   			document.getElementById("prediction-text").innerHTML = "File name: " + fileName+ "<br/>" + "I am " + ((1 - predictions[0]) * 100).toFixed(2) + "% certain this tissue is normal!";
    	   		} else {
-   	   			document.getElementById("prediction-text").innerHTML = "I am " + (predictions[0] * 100).toFixed(2) + "% certain this tissue is tumour tissue!";
+                  document.getElementById("loader").style.display = "none";
+   	   			document.getElementById("prediction-text").innerHTML = "File name: " + fileName+ "<br/>" + "I am " + (predictions[0] * 100).toFixed(2) + "% certain this tissue is tumour!";;
    	   		}
 
 
@@ -68,7 +66,11 @@
 </script>
 
 </head>
-<body>
+<body onload="document.getElementById('loader').style.display = 'none'">
+
+<div id="loader">
+</div>
+
 
 <div class="header info">
 <div class="header-text">
@@ -95,15 +97,17 @@ A Colorectal Cancer Prediction Platform created through
 
 
 <div id="analysis-section">
-<h1>Click Analyze to Run the Neural Network!</h1> 
+<h1>Click Analyze to Run the Neural Network! See deafault!</h1> 
 <img src="" class="preview" id="preview" alt="Image preview"/>
 
 <p id="prediction-text"></p>
 
 <button class="submission analyze" onclick=
-"analyze()"> <span class="glyphicon glyphicon glyphicon-stats"> 
+"document.getElementById('loader').style.display = 'inline'; analyze()"> <span class="glyphicon glyphicon glyphicon-stats"> 
 	</span> ANALYZE </label>
 </button>
+
+
 </div>
 
 
