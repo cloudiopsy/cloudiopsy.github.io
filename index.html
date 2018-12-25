@@ -39,21 +39,14 @@
 
    	   let model;
 
-		async function loadModel() {
-
-		  // clear the model variable
-		  model = undefined;
-		  
-		  // load the model using a HTTPS request (where you have stored your model files)
-		  model = await tf.loadModel('https://cloudiopsy.github.io/model.json');
-		
-		}
 
    	   async function runModel(file) {
-   	   		loadModel();
+
    	   		const model = await tf.loadModel('https://cloudiopsy.github.io/model.json');
 
    	   		// Convert image to tensor
+   	   		let fileName = file.name;
+
    	   		let img_tensor = tf.fromPixels(document.getElementById("preview")).resizeNearestNeighbor([150, 150]);
    	   		img_tensor = tf.expandDims(img_tensor, axis=0);
 
@@ -61,13 +54,10 @@
    	   		let predictions = await model.predict(img_tensor).data();
 
    	   		if(predictions[0] < 0.25) {
-   	   			document.getElementById("prediction-text").innerHTML = predictions[0] + ": This tissue is deemed as normal!";
+   	   			document.getElementById("prediction-text").innerHTML = "File name: " + fileName+ "<br/>" + "I am " + ((1 - predictions[0]) * 100).toFixed(2) + "% certain this tissue is normal!";
    	   		} else {
-   	   			document.getElementById("prediction-text").innerHTML = predictions[0] + ": This tissue is deemed as tumour!";
+   	   			document.getElementById("prediction-text").innerHTML = "I am " + (predictions[0] * 100).toFixed(2) + "% certain this tissue is tumour tissue!";
    	   		}
-
-
-   	   		// alert(prediction);
 
 
    	   }
