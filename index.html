@@ -32,14 +32,15 @@
    	   		if (file) {
    	   			runModel(file)
    	   		} else {
-   	   			runModel(document.querySelector('img[src="NORM-FPDCNHFY.jpg"]'));
+                  document.getElementById('loader').style.display = 'none';
+                  alert('Please save the file and upload above, then click analyze!'); 
    	   		}
    	   }
 
 
    	   async function runModel(file) {
 
-   	   		const model = await tf.loadModel('https://cloudiopsy.github.io/model.json');
+   	   		const model = await tf.loadModel('https://cloudiopsy.github.io/model/model.json');
 
    	   		// Convert image to tensor
    	   		let fileName = file.name;
@@ -48,20 +49,19 @@
                // image.crossOrigin = 'anonymous';
 
    	   		let img_tensor = tf.fromPixels(document.getElementById("preview")).resizeNearestNeighbor([224, 224]);
+
    	   		img_tensor = tf.expandDims(img_tensor, axis=0);
 
    	   		img_tensor = tf.div(img_tensor, 255);
-   	   		let predictions = await model.predict(img_tensor).data();
+   	   		let predictions = await model.predict(img_tensor).dataSync();
 
-               let percent = ((1 - predictions[0]) * 100).toFixed(2)
+               let percent = ((1 - predictions) * 100).toFixed(2);
 
                document.getElementById("loader").style.display = "none";
                if(percent > 50) {
-      	   		if(predictions[0] < 0.25) {
-                     alert(predictions)
+      	   		if(predictions < 0.5) {
       	   			document.getElementById("prediction-text").innerHTML = "File name: " + fileName+ "<br/>This tissue is normal!";
       	   		} else {
-                     alert(predictions)
       	   			document.getElementById("prediction-text").innerHTML ="File name: " + fileName+ "<br/>This tissue is tumour!";
       	   		}
                } else {
@@ -88,8 +88,8 @@
  CLOUDIOPSY <img src="logo.png"/>
 </div>
 <div class="subheader">
-A Colorectal Cancer Prediction Platform created through
-<br/> Tensorflow
+A Colorectal Cancer Prediction Platform featuring a Keras model trained
+<br/> trained on the Google Cloud Platform and served with Tensorflow.js
 </div>
 
 <div class="side-image">
@@ -108,7 +108,7 @@ A Colorectal Cancer Prediction Platform created through
 
 
 <div id="analysis-section">
-<h1>Click Analyze to Run the Neural Network! See deafault!</h1> 
+<h1>Save the photo below or upload your own! <br/> Click analyze to see the prediction based on the uploaded photo!</h1> 
 <img src="NORM-FPDCNHFY.jpg" class="preview" id="preview" alt="Image preview"/>
 
 <p id="prediction-text"></p>
