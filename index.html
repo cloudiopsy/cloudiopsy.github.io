@@ -47,7 +47,7 @@
                // image = document.querySelector('img[src="NORM-FPDCNHFY.jpg"]'); 
                // image.crossOrigin = 'anonymous';
 
-   	   		let img_tensor = tf.fromPixels(document.getElementById("preview")).resizeNearestNeighbor([150, 150]);
+   	   		let img_tensor = tf.fromPixels(document.getElementById("preview")).resizeNearestNeighbor([224, 224]);
    	   		img_tensor = tf.expandDims(img_tensor, axis=0);
 
    	   		img_tensor = tf.div(img_tensor, 255);
@@ -58,8 +58,10 @@
                document.getElementById("loader").style.display = "none";
                if(percent > 50) {
       	   		if(predictions[0] < 0.25) {
+                     alert(predictions)
       	   			document.getElementById("prediction-text").innerHTML = "File name: " + fileName+ "<br/>This tissue is normal!";
       	   		} else {
+                     alert(predictions)
       	   			document.getElementById("prediction-text").innerHTML ="File name: " + fileName+ "<br/>This tissue is tumour!";
       	   		}
                } else {
