@@ -56,7 +56,7 @@ body {
 .submission {
 	position: absolute;
 	margin-left: 4em;
-	top: 60%;
+	top: 70%;
 	font-weight: 700;
 	background-color: Transparent;
     background-repeat:no-repeat;
@@ -98,6 +98,11 @@ input[type="file"] {
 	height: 20vw;
 }
 
+.metrics {
+	font-size: 1.5em;
+	color: #376999;
+	font-weight: 300;
+}
 
 #analysis-section p {
 	font-weight: 100;

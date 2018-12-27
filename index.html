@@ -8,72 +8,67 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.14.1/dist/tf.min.js"></script>
 
-	<script>
-		
-	   function previewFile(){
-	       var preview = document.querySelector('img[class=preview]'); 
-	       var file    = document.querySelector('input[type=file]').files[0];
-	       var reader  = new FileReader();
+	<script>function previewFile() {
+    var preview = document.querySelector('img[class=preview]');
+    var file = document.querySelector('input[type=file]').files[0];
+    var reader = new FileReader();
 
-	       reader.onloadend = function () {
-	           preview.src = reader.result;
-	       }
+    reader.onloadend = function() {
+        preview.src = reader.result;
+    }
 
-	       if (file) {
-	           reader.readAsDataURL(file); 
-	       } else {
-	           preview.src = "NORM-FPDCNHFY.jpg";
-              preview.crossOrigin = "anonymous";
-	       }
-   	   }
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = "NORM-FPDCNHFY.jpg";
+    }
+}
 
-   	   function analyze() {
-   	   		var file    = document.querySelector('input[type=file]').files[0]; 
-   	   		if (file) {
-   	   			runModel(file)
-   	   		} else {
-                  document.getElementById('loader').style.display = 'none';
-                  alert('Please save the file and upload above, then click analyze!'); 
-   	   		}
-   	   }
+function analyze() {
+    var file = document.querySelector('input[type=file]').files[0];
+    if (file) {
+        runModel(file)
+    } else {
+        document.getElementById('loader').style.display = 'none';
+        alert('Please save the file and upload above, then click analyze!');
+    }
+}
 
 
-   	   async function runModel(file) {
+async function runModel(file) {
 
-   	   		const model = await tf.loadModel('https://cloudiopsy.github.io/model/model.json');
+    const model = await tf.loadModel('https://cloudiopsy.github.io/model/model.json');
+    
+    let fileName = file.name;
 
-   	   		// Convert image to tensor
-   	   		let fileName = file.name;
+    let img_tensor = tf.fromPixels(document.getElementById("preview")).resizeNearestNeighbor([224, 224]);
 
-               // image = document.querySelector('img[src="NORM-FPDCNHFY.jpg"]'); 
-               // image.crossOrigin = 'anonymous';
+    img_tensor = tf.expandDims(img_tensor, axis = 0);
 
-   	   		let img_tensor = tf.fromPixels(document.getElementById("preview")).resizeNearestNeighbor([224, 224]);
+    img_tensor = tf.div(img_tensor, 255);
+    let predictions = await model.predict(img_tensor).dataSync();
 
-   	   		img_tensor = tf.expandDims(img_tensor, axis=0);
+    let percent;
 
-   	   		img_tensor = tf.div(img_tensor, 255);
-   	   		let predictions = await model.predict(img_tensor).dataSync();
+    if (predictions < 0.5) {
+        percent = ((1 - predictions) * 100).toFixed(2);
+    } else {
+        percent = ((predictions) * 100).toFixed(2);
+    }
 
-               let percent = ((1 - predictions) * 100).toFixed(2);
-
-               document.getElementById("loader").style.display = "none";
-               if(percent > 50) {
-      	   		if(predictions < 0.5) {
-      	   			document.getElementById("prediction-text").innerHTML = "File name: " + fileName+ "<br/>This tissue is normal!";
-      	   		} else {
-      	   			document.getElementById("prediction-text").innerHTML ="File name: " + fileName+ "<br/>This tissue is tumour!";
-      	   		}
-               } else {
-                  document.getElementById("prediction-text").innerHTML = "The model is uncertain. Please try a different image.";
-               }
-
-
-   	   }
-
+    document.getElementById("loader").style.display = "none";
+    if (percent > 50) {
+        if (predictions < 0.5) {
+            document.getElementById("prediction-text").innerHTML = "File name: " + fileName + "<br/>This tissue is normal!";
+        } else {
+            document.getElementById("prediction-text").innerHTML = "File name: " + fileName + "<br/>This tissue contains tumours!";
+        }
+    } else {
+        document.getElementById("prediction-text").innerHTML = "The model is uncertain. Please try a different image.";
+    }
 
 
-
+}
 </script>
 
 </head>
@@ -88,8 +83,9 @@
  CLOUDIOPSY <img src="logo.png"/>
 </div>
 <div class="subheader">
-A Colorectal Cancer Prediction Platform featuring a Keras model trained
+A Colorectal Cancer Prediction Platform featuring a Keras model 
 <br/> trained on the Google Cloud Platform and served with Tensorflow.js
+<br/>
 </div>
 
 <div class="side-image">
