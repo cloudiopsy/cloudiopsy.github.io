@@ -177,7 +177,7 @@ input[type="file"] {
   to{ bottom:0; opacity:1 }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 750px) {
   .side-image {
   	display: none;
   }
@@ -195,9 +195,14 @@ input[type="file"] {
   	font-size: 10vw;
   }
 
+
   .info {
   	margin: 0;
   	text-align: center;
+  }
+
+  .subheader {
+  	font-size: 2.7vw;
   }
 
 
@@ -226,7 +231,9 @@ input[type="file"] {
 	font-size: 4vw;
 }
 
-
+.submission {
+	font-size: 2.2vw;
+}
 
 
 
@@ -235,12 +242,23 @@ input[type="file"] {
 
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 550px) {
+
+ img[src="logo.png"] {
+	margin-right: 0;
+  	position: absolute;
+  	width: 40vw;
+  	height: 40vw;
+  	left: 30%;
+  }
+
+
+.header-text {
+	font-size: 0px;
+}
 
 .subheader {
-	font-weight: 300;
-	margin-top: 0.25em;
-	font-size: 3vw;
+	display: none;
 }
 
 .info {
@@ -254,6 +272,7 @@ input[type="file"] {
 	width: 50vw;
 	height: 50vw;
 }
+
 #analysis-section h1 {
 	font-size: 6vw;
 	color: #37698C;
@@ -264,6 +283,7 @@ input[type="file"] {
 	text-align: center;
 	margin: 0;
 	left: 33%;
+	font-size:3.5vw;
 }
 
 
@@ -273,6 +293,15 @@ input[type="file"] {
 
 
 }
+
+@media only screen and (max-width: 400px) {
+
+.submission {
+	font-size:4.5vw;
+}
+
+}
+
 
 
 
