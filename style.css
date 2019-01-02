@@ -272,8 +272,8 @@ input[type="file"] {
 .preview {
 	margin-top: 1.5em;
 	margin-left: 9vw;
-	width: 50vw;
-	height: 50vw;
+	width: 40vw;
+	height: 40vw;
 }
 
 
@@ -292,7 +292,7 @@ input[type="file"] {
 	text-align: center;
 	margin: 0;
 	left: 40%;
-	font-size:2.5vw;
+	font-size:2.8vw;
 }
 
 .upload {
@@ -312,7 +312,7 @@ input[type="file"] {
 
 .submission {
 	left: 32%;
-	font-size:3vw;
+	font-size:4.5vw;
 }
 
 }
