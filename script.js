@@ -1,3 +1,10 @@
+var model; 
+
+async function load() {
+    console.log("loading model");
+    model = await tf.loadModel('https://cloudiopsy.github.io/model/model.json');
+}
+
 function previewFile() {
     var preview = document.querySelector('img[class=preview]');
     var file = document.querySelector('input[type=file]').files[0];
@@ -11,7 +18,6 @@ function previewFile() {
         reader.readAsDataURL(file);
     } else {
         preview.src = "NORM-FPDCNHFY.jpg";
-        preview.crossOrigin = "anonymous";
     }
 }
 
@@ -26,10 +32,7 @@ function analyze() {
 }
 
 
-async
-function runModel(file) {
-
-    const model = await tf.loadModel('https://cloudiopsy.github.io/model/model.json');
+async function runModel(file) {
     
     let fileName = file.name;
 
@@ -60,4 +63,14 @@ function runModel(file) {
     }
 
 
+}
+
+function moveSection() {
+    window.location.hash = '';
+    window.location.hash = 'analysis-section'
+}
+
+function showLoader() {
+    document.getElementById('prediction-text').innerHTML = ''; 
+    document.getElementById('loader').style.display = 'inline'; 
 }
