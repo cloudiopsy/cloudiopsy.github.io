@@ -292,12 +292,12 @@ input[type="file"] {
 	text-align: center;
 	margin: 0;
 	left: 40%;
-	font-size:2.8vw;
+	font-size:2vw;
 }
 
 .upload {
 	left: 36%;
-	font-size:3vw;
+	font-size:2vw;
 }
 
 
@@ -312,7 +312,7 @@ input[type="file"] {
 
 .submission {
 	left: 32%;
-	font-size:3vw;
+	font-size:2vw;
 }
 
 }
