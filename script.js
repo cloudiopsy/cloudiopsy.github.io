@@ -1,8 +1,8 @@
 var model; 
 
 async function load() {
-    console.log("loading model");
     model = await tf.loadModel('https://cloudiopsy.github.io/model/model.json');
+    console.log("loaded");
 }
 
 function previewFile() {
