@@ -130,6 +130,13 @@ input[type="file"] {
 	margin-left: 1.5em;
 }
 
+.credits {
+	left: 5%;
+	font-size: 1.5vw;
+	position: absolute;
+	top: 90%;
+}
+
 
 #loader {
   position: absolute;
@@ -178,6 +185,14 @@ input[type="file"] {
 }
 
 @media only screen and (max-width: 750px) {
+
+	.credits {
+	left: 5%;
+	font-size: 2vw;
+	position: absolute;
+	top: 90%;
+}
+
   .side-image {
   	display: none;
   }
@@ -243,6 +258,13 @@ input[type="file"] {
 }
 
 @media only screen and (max-width: 570px) {
+
+	.credits {
+	left: 5%;
+	font-size: 2.7vw;
+	position: absolute;
+	top: 90%;
+}
 
  img[src="logo.png"] {
 	margin-right: 0;
