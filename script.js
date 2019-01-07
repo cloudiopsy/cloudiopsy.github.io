@@ -2,7 +2,9 @@ var model;
 
 (async function() {
     model = await tf.loadModel('https://cloudiopsy.github.io/model/model.json');
-    console.log("loaded");
+    document.getElementById('loader').style.display = 'inline';
+    alert("Model has loaded!");
+    document.getElementById('loader').style.display = 'none';
 })();
 
 function previewFile() {
@@ -26,7 +28,6 @@ function analyze() {
     if (file) {
         runModel(file)
     } else {
-        document.getElementById('loader').style.display = 'none';
         alert('Please save the file and upload above, then click analyze!');
     }
 }
@@ -51,7 +52,9 @@ async function runModel(file) {
         percent = ((predictions) * 100).toFixed(2);
     }
 
-    document.getElementById("loader").style.display = "none";
+     document.getElementById('loader').style.display = 'none'; 
+
+
     if (percent > 50) {
         if (predictions < 0.5) {
             document.getElementById("prediction-text").innerHTML = "File name: " + fileName + "<br/>This tissue is normal!";
