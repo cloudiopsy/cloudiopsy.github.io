@@ -1,8 +1,8 @@
 var model; 
 
 (async function() {
-    model = await tf.loadModel('https://cloudiopsy.github.io/model/model.json');
     document.getElementById('loader').style.display = 'inline';
+    model = await tf.loadModel('https://cloudiopsy.github.io/model/model.json');
     alert("Model has loaded!");
     document.getElementById('loader').style.display = 'none';
 })();
@@ -29,6 +29,7 @@ function analyze() {
         runModel(file)
     } else {
         alert('Please save the file and upload above, then click analyze!');
+        document.getElementById('loader').style.display = 'none';
     }
 }
 
