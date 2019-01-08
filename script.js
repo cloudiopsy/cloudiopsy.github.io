@@ -1,10 +1,10 @@
 var model; 
 
 (async function() {
-    document.getElementById('loader').style.display = 'inline';
     model = await tf.loadModel('https://cloudiopsy.github.io/model/model.json');
     alert("Model has loaded!");
-    document.getElementById('loader').style.display = 'none';
+    document.getElementById('loader').style.display = 'none'; 
+
 })();
 
 function previewFile() {
@@ -35,6 +35,8 @@ function analyze() {
 
 
 async function runModel(file) {
+
+    document.getElementById('loader').style.display = 'inline'; 
     
     let fileName = file.name;
 
