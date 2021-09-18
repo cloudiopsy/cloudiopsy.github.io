@@ -1,5 +1,6 @@
 # Cloudiopsy
 
-A colorectal tissue classifier neural network trained on Google Cloud Platform and served through Tensorflow.js
----
-Created by Adrian Serapio
+A colorectal cancer tissue classifier trained on Google Colab and served through Tensorflow.js
+\
+\
+Copyright © 2021 Adrian Serapio | All rights reserved
